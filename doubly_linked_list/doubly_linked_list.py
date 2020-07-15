@@ -69,7 +69,7 @@ class DoublyLinkedList:
             # if head.next is not None
                 # set head.next's prev to None
                 # set head to head.next
-            if self.head.next is None:
+            if self.head.next == None:
                 self.head.prev = None
                 self.head = self.head.next
             # else (if head.next is None)
