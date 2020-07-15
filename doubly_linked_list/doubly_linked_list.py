@@ -9,7 +9,14 @@ class ListNode:
         self.next = next
 
     def delete(self):
-        pass
+        if self.prev:
+            self.prev.next = self.next
+
+        if self.next:
+            self.next.prev =  self.prev
+
+        self.next = None
+        self.prev = None
             
 """
 Our doubly-linked list class. It holds references to 
@@ -131,21 +138,41 @@ class DoublyLinkedList:
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        #Check if it's already in front and return
+        if node is self.head:
+            return
+        #Delete the node we want to move 
+        self.delete(node)
+        #increase the length
+        self.length += 1 
+        node.next = self.head
+        self.head.prev = node
+        self.head = node
+
         
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        if node is self.tail:
+            return
+        self.length += 1
+        node.prev = self.tail
+        self.tail.next = node
+        self.tail = node 
 
     """
     Deletes the input node from the List, preserving the 
     order of the other elements of the List.
     """
     def delete(self, node):
-        pass
+        #if list is empty
+        if not self.head:
+            print('ERROR : list is empty')
+            return None
+        
+        
 
     """
     Finds and returns the maximum value of all the nodes 
