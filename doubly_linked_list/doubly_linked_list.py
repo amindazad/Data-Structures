@@ -172,11 +172,38 @@ class DoublyLinkedList:
             print('ERROR : list is empty')
             return None
         
+        self.length -= 1 
+
+        #if list has one item
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
         
+        # if list has more than one item and the node to delete is the head node 
+        if node == self.head:
+            self.head = node.next
+            self.tail = None 
+        
+        # if list has more than one item and the node to delete is the tail node
+        if node == self.tail:
+            self.tail = node.prev
+            self.head = None 
+        
+        else:
+            node.delete()
 
     """
     Finds and returns the maximum value of all the nodes 
     in the List.
     """
     def get_max(self):
-        pass
+        current.node = self.head
+        highest_value = 0
+
+        while current_node is not None:
+            if highest_value < current_node.value:
+                highest_value = current_node.value
+            
+            current_node = current_node.next
+        
+        return highest_value
