@@ -134,18 +134,25 @@ class BSTNode:
     # in an iterative depth first traversal
     def dft_print(self, node):
         # initialize an empty stack
-        # push the root node onto the stack
-
+        # push the root node onto the 
+        stack = Stack()
+        stack.push(node)
+        current_node = None
         # need a while loop to manager our iteration
         # if stack is not empty enter the while loop
             # pop top item off the stack
             # print that item's value
-
+        while (stack.size>0):
+            current_node = stack.pop()
+            print(current_node.value)
             # if there is a right subtree
                 # push right item onto the stack
-                
+            if current_node.right:
+                stack.push(current_node.right)
             # if there is a left subtree
                 # push left item onto the stack
+            if current_node.left:
+                stack.push(current_node.left)    
 
     # Stretch Goals -------------------------
     # Note: Research may be required
