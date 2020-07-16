@@ -1,3 +1,29 @@
+import sys
+sys.path.append('../stack')
+from stack import Stack
+sys.path.append('../doubly_linked_list')
+from doubly_linked_list import DoublyLinkedList
+sys.path.append('../queue')
+from queue import Queue
+
+class Queue:
+    def __init__(self):
+        self.size = 0
+        self.storage = DoublyLinkedList()
+    def __len__(self):
+        return self.size
+    def enqueue(self, value):
+        self.storage.add_to_tail(value)
+        self.size += 1
+    def dequeue(self):
+        # handle if list is empty
+        if self.size == 0:
+            return None
+        else:
+            self.size -= 1
+            return self.storage.remove_from_head()
+
+
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -81,12 +107,45 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # Import the queue class from earlier in the
+        # week and use that class to implement this method
+        # Use a queue to form a "line" 
+        # for the nodes to "get in"
+        queue = Queue()
+        queue.enqueue(node)
+        # Start by placing the root in the queue
+        current_node = None
+        # need a while loop to iterate
+        # what are we checking in the while statement?
+        # while length of queue is greater than 0
+            # dequeue item from front of queue
+            # print that item
+        while (queue.size > 0):
+            current_node = queue.dequeue()
+            print(current_node.value)
+            # place current item's left node in queue if not None
+            if current_node.left:
+                queue.enqueue(current_node.left)
+            # place current item's right node in queue if not None
+            if current_node.right:
+                queue.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # initialize an empty stack
+        # push the root node onto the stack
+
+        # need a while loop to manager our iteration
+        # if stack is not empty enter the while loop
+            # pop top item off the stack
+            # print that item's value
+
+            # if there is a right subtree
+                # push right item onto the stack
+                
+            # if there is a left subtree
+                # push left item onto the stack
 
     # Stretch Goals -------------------------
     # Note: Research may be required
